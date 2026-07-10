@@ -36,6 +36,11 @@ tasks/
 
 memory/*
 !memory/memory_management_sop.md
+!memory/crag_toolkit.py
+!memory/skills/
+memory/skills/*
+!memory/skills/crag-benchmark/
+!memory/skills/crag-benchmark/**
 
 # Allow tracking of specific SOPs
 !memory/web_setup_sop.md

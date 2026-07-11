@@ -1,3 +1,13 @@
+# CRAG Benchmark Skill - Route A (code_run only)
+
+This route exposes only one executable GA tool: `code_run`. Do not emit native CRAG tool calls. To use a CRAG tool, run Python code that imports `call_crag_tool` from `crag_toolkit`.
+
+Example:
+```python
+from crag_toolkit import call_crag_tool
+print(call_crag_tool("open_search_entity_by_name", {"query": "Steve Nash"}))
+```
+
 # CRAG Benchmark Skill
 
 Use this skill when answering CRAG benchmark questions. CRAG questions are designed to test tool use: answer only after using the CRAG mock API tools when needed.

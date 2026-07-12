@@ -56,6 +56,7 @@ def _ensure_crag_import_path() -> Path:
 
 
 def _load_search_results(search_results_file: Optional[str]) -> Optional[list[dict]]:
+    search_results_file = search_results_file or os.environ.get("CRAG_SEARCH_RESULTS_FILE")
     if not search_results_file:
         return None
     path = Path(search_results_file)
@@ -152,3 +153,4 @@ if __name__ == "__main__":
         search_results_file=args.search_results_file,
         mock_api_url=args.mock_api_url,
     ))
+

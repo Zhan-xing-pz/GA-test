@@ -27,7 +27,7 @@ On failure it returns:
 {"ok": false, "tool_name": "...", "arguments": {...}, "error": "..."}
 ```
 
-Read `observation` before choosing the next action. `list_crag_tools()` can be used in `code_run` to inspect schemas, but the complete reference is listed below.
+Read `observation` before choosing the next action. The complete tool reference is listed below.
 
 ## Working Rules
 
@@ -39,18 +39,6 @@ Read `observation` before choosing the next action. `list_crag_tools()` can be u
 6. When sufficient evidence has been collected, return only a concise answer. If the available tools cannot support an answer after reasonable attempts, return `I don't know`.
 
 ## Tool Reference
-
-### Universal
-
-```text
-list_crag_tools()
--> tool schema list
--- Inspect the currently available CRAG tool names, parameter schemas, and descriptions.
-
-answer
--> plain final text
--- Do not call this through crag_toolkit. Write the final answer directly in natural text.
-```
 
 ### Finance
 
@@ -230,9 +218,19 @@ open_get_entity(entity: str)
 
 Use Open-domain tools for general encyclopedic questions or to resolve an entity name. Do not keep retrying Open search for a finance, movie, music, or sports question when domain-specific tools are available.
 
+### Web Search
+
+```text
+web_search(query: str)
+-> str
+-- Search the current question's pre-loaded web snippets. Use this when domain tools are insufficient or when the question asks for open web evidence. Do not provide a search_results path; the benchmark runner supplies the current question's search results internally.
+```
+
 ## Final Answer Rules
 
 - Return only the answer, not chain-of-thought or tool traces.
+- Write the final answer directly in natural text; do not call an `answer` tool.
 - Keep answers short: usually a name, date, number, yes/no, or short phrase.
 - If multiple items are requested, separate them clearly with commas.
 - Do not claim that a fact is unavailable until the relevant domain-specific tools have been tried.
+
